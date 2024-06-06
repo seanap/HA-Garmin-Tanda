@@ -1,7 +1,8 @@
 # Garmin > Tanda Marathon Prediction > Home Assistant
 Simplify your running metrics, track your performance, automate all the things. The only running metrics you need to estimate marathon race time is Avg Pace and Avg Miles/wk over the trailing 56days.  This script will fetch running data from your garminconnect account, apply the [tanda algorithm](https://rua.ua.es/dspace/bitstream/10045/18930/1/jhse_Vol_VI_N_III_511-520.pdf), push a sensor update to Home Assistant, then Home Assistant will automatically run the script after every activity, use our new sensor values as a display on our dashboards or as part of automtaions and notifications.
 
-![image](https://github.com/seanap/HA-Garmin-Tanda/assets/17012946/4aa165a7-5559-44b2-abf2-3da5d4d0cf7e)
+![image](https://github.com/seanap/HA-Garmin-Tanda/assets/17012946/a6a186b6-1882-470e-825f-c3e2c5bec609)
+
 
 ## PC Setup
 
@@ -67,6 +68,35 @@ action:
     target:
       entity_id: button.update_garmin_tanda_python_script
 mode: single
+```
+
+### Set up Lovelace Card
+Here is the yaml for the entities card that I made. Please post your cards and display in the Discussions tab!
+
+I installed the `custom:template-entity-row` from HACS so that I can display the human readable attribute from the sensor.
+
+```yaml
+type: entities
+entities:
+  - type: custom:template-entity-row
+    entity: sensor.marathon_prediction
+    name: Marathon Prediction
+    icon: mdi:run-fast
+    state: |
+      {{ state_attr('sensor.marathon_prediction', 'human_readable') }}
+  - type: custom:template-entity-row
+    entity: sensor.average_gap_pace
+    name: Average GAP
+    icon: mdi:image-filter-hdr
+    state: |
+      {{ state_attr('sensor.average_gap_pace', 'human_readable') }} min/mi
+  - entity: sensor.average_miles_per_week
+    name: Average Miles/week
+    icon: mdi:calendar-clock-outline
+    secondary_info: last-updated
+    state: |
+      {{ states('sensor.average_miles_per_week') }} miles
+title: Running
 ```
 
 ## Special Thanks
