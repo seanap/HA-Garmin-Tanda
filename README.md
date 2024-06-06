@@ -1,4 +1,4 @@
-# Garmin Connect > Tanda Marathon Prediction > Home Assistant
+# Garmin Data > Tanda Marathon Prediction > Home Assistant
 Simplify your running metrics, track your performance, automate all the things. The only running metrics you need to estimate marathon race time is Avg Pace and Avg Miles/wk over the trailing 56days.  This script will fetch running data from your garminconnect account, apply the [tanda algorithm](https://freshlegsmonday.com/), push a sensor update to Home Assistant, then Home Assistant will automatically run the script after every activity, use our new sensor values as a display on our dashboards or as part of automtaions and notifications.
 
 ![image](https://github.com/seanap/HA-Garmin-Tanda/assets/17012946/4aa165a7-5559-44b2-abf2-3da5d4d0cf7e)
