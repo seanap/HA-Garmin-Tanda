@@ -50,7 +50,7 @@ sensor:
 
 Review the sensor and button `entity_id`
 
-```jinja
+```yaml
 alias: Run Garmin Tanda Script on New Garmin Activity
 description: >-
   Press the button to update Garmin Tanda python script when a new garmin
